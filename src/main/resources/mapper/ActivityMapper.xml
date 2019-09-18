@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lhz.lyt.dao.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="cn.lhz.lyt.pojo.Activity" >
+    <result column="activity_id" property="activityId" jdbcType="VARCHAR" />
+    <result column="activity_user" property="activityUser" jdbcType="VARCHAR" />
+    <result column="activity_to_user" property="activityToUser" jdbcType="VARCHAR" />
+    <result column="activity_time" property="activityTime" jdbcType="VARCHAR" />
+    <result column="activity_part_time" property="activityPartTime" jdbcType="VARCHAR" />
+    <result column="activity_state" property="activityState" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.lhz.lyt.pojo.Activity" extends="BaseResultMap" >
+    <result column="activity_text" property="activityText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    activity_id, activity_user, activity_to_user, activity_time, activity_part_time, 
+    activity_state
+  </sql>
+  <sql id="Blob_Column_List" >
+    activity_text
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="cn.lhz.lyt.pojo.ActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.lhz.lyt.pojo.ActivityExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="cn.lhz.lyt.pojo.ActivityExample" >
+    delete from activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.lhz.lyt.pojo.Activity" >
+    insert into activity (activity_id, activity_user, activity_to_user, 
+      activity_time, activity_part_time, activity_state, 
+      activity_text)
+    values (#{activityId,jdbcType=VARCHAR}, #{activityUser,jdbcType=VARCHAR}, #{activityToUser,jdbcType=VARCHAR}, 
+      #{activityTime,jdbcType=VARCHAR}, #{activityPartTime,jdbcType=VARCHAR}, #{activityState,jdbcType=VARCHAR}, 
+      #{activityText,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.lhz.lyt.pojo.Activity" >
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="activityUser != null" >
+        activity_user,
+      </if>
+      <if test="activityToUser != null" >
+        activity_to_user,
+      </if>
+      <if test="activityTime != null" >
+        activity_time,
+      </if>
+      <if test="activityPartTime != null" >
+        activity_part_time,
+      </if>
+      <if test="activityState != null" >
+        activity_state,
+      </if>
+      <if test="activityText != null" >
+        activity_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="activityId != null" >
+        #{activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="activityUser != null" >
+        #{activityUser,jdbcType=VARCHAR},
+      </if>
+      <if test="activityToUser != null" >
+        #{activityToUser,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null" >
+        #{activityTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activityPartTime != null" >
+        #{activityPartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="activityState != null" >
+        #{activityState,jdbcType=VARCHAR},
+      </if>
+      <if test="activityText != null" >
+        #{activityText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.lhz.lyt.pojo.ActivityExample" resultType="java.lang.Integer" >
+    select count(*) from activity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update activity
+    <set >
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityUser != null" >
+        activity_user = #{record.activityUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityToUser != null" >
+        activity_to_user = #{record.activityToUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityTime != null" >
+        activity_time = #{record.activityTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityPartTime != null" >
+        activity_part_time = #{record.activityPartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityState != null" >
+        activity_state = #{record.activityState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityText != null" >
+        activity_text = #{record.activityText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update activity
+    set activity_id = #{record.activityId,jdbcType=VARCHAR},
+      activity_user = #{record.activityUser,jdbcType=VARCHAR},
+      activity_to_user = #{record.activityToUser,jdbcType=VARCHAR},
+      activity_time = #{record.activityTime,jdbcType=VARCHAR},
+      activity_part_time = #{record.activityPartTime,jdbcType=VARCHAR},
+      activity_state = #{record.activityState,jdbcType=VARCHAR},
+      activity_text = #{record.activityText,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update activity
+    set activity_id = #{record.activityId,jdbcType=VARCHAR},
+      activity_user = #{record.activityUser,jdbcType=VARCHAR},
+      activity_to_user = #{record.activityToUser,jdbcType=VARCHAR},
+      activity_time = #{record.activityTime,jdbcType=VARCHAR},
+      activity_part_time = #{record.activityPartTime,jdbcType=VARCHAR},
+      activity_state = #{record.activityState,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
