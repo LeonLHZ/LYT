@@ -24,6 +24,7 @@ public class LoginController
     @ResponseBody
     public String login(User user)
     {
+
       if ("123456".equals(user.getUserPassword()))
           return "欢迎";
       return "滚";
