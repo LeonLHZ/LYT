@@ -48,7 +48,6 @@ function loginAjax(){
 var password = $("#loginpassword").val();
 var email= $("#loginemail").val();
 var param={"userPassword":password,"userEmail":email}
-alert(password);
     $.post( "/login",param, function( data ) {
             if(data == 1){
                 window.location.replace("/home");            
