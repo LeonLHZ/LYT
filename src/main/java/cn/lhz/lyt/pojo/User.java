@@ -19,6 +19,18 @@ public class User {
 
     private String userType;
 
+    private String userState;
+
+    public String getUserState()
+    {
+        return userState;
+    }
+
+    public void setUserState(String userState)
+    {
+        this.userState = userState;
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -89,5 +101,22 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType == null ? null : userType.trim();
+    }
+
+    @Override
+    public String toString()
+    {
+        return "User{" +
+                "userId='" + userId + '\'' +
+                ", userUsername='" + userUsername + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userSex='" + userSex + '\'' +
+                ", userBirthday='" + userBirthday + '\'' +
+                ", userImg='" + userImg + '\'' +
+                ", userType='" + userType + '\'' +
+                ", userState='" + userState + '\'' +
+                '}';
     }
 }

@@ -20,5 +20,7 @@ public interface UserMapper {
 
     int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 
-   /* User selectByCondition(User user);*/
+   User selectByCondition(User user);
+
+   int updateByUser(User user);
 }

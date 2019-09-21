@@ -11,6 +11,7 @@
     <result column="user_birthday" property="userBirthday" jdbcType="VARCHAR" />
     <result column="user_img" property="userImg" jdbcType="VARCHAR" />
     <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="user_state" property="userState" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -95,21 +96,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.lhz.lyt.pojo.User" >
+    <selectKey resultType="java.lang.String" order="BEFORE"
+        keyProperty="userId">
+        select uuid()
+        </selectKey>
     insert into user (user_id, user_username, user_password, 
       user_email, user_phone, user_sex, 
-      user_birthday, user_img, user_type
+      user_birthday, user_img, user_type ,user_state
       )
     values (#{userId,jdbcType=VARCHAR}, #{userUsername,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, 
       #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, 
-      #{userBirthday,jdbcType=VARCHAR}, #{userImg,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}
+      #{userBirthday,jdbcType=VARCHAR}, #{userImg,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, #{userState,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.lhz.lyt.pojo.User" >
+
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="userId != null" >
-        user_id,
-      </if>
+
       <if test="userUsername != null" >
         user_username,
       </if>
@@ -222,12 +226,84 @@
     </if>
   </update>
 
-  <!--<select id="selectByCondition" parameterType="cn.lhz.lyt.pojo.User" resultType="cn.lhz.lyt.pojo.User">
+  <select id="selectByCondition"  resultMap="BaseResultMap" parameterType="cn.lhz.lyt.pojo.User">
     select * from user
     <where>
-      <if test=""></if>
+      <trim prefix="" suffix="" prefixOverrides="and" >
+
+            <if test="userId != null" >
+             and user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="userUsername != null" >
+              and user_username = #{userUsername,jdbcType=VARCHAR}
+            </if>
+            <if test="userPassword != null" >
+              and user_password = #{userPassword,jdbcType=VARCHAR}
+            </if>
+            <if test="userEmail != null" >
+              and  user_email = #{userEmail,jdbcType=VARCHAR}
+            </if>
+            <if test="userPhone != null" >
+              and  user_phone = #{userPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="userSex != null" >
+              and  user_sex = #{userSex,jdbcType=VARCHAR}
+            </if>
+            <if test="userBirthday != null" >
+              and  user_birthday = #{userBirthday,jdbcType=VARCHAR}
+            </if>
+            <if test="userImg != null" >
+              and  user_img = #{userImg,jdbcType=VARCHAR}
+            </if>
+            <if test="userType != null" >
+              and  user_type = #{userType,jdbcType=VARCHAR}
+            </if>
+             <if test="userState != null" >
+                      and  user_state = #{userState,jdbcType=VARCHAR}
+                    </if>
+
+      </trim>
+    </where>
+  </select>
+
+
+  <update id="updateByUser" parameterType="cn.lhz.lyt.pojo.User">
+     update user
+   <set>
+
+          <if test="userUsername != null" >
+            user_username = #{userUsername,jdbcType=VARCHAR},
+          </if>
+          <if test="userPassword != null" >
+            user_password = #{userPassword,jdbcType=VARCHAR},
+          </if>
+          <if test="userEmail != null" >
+            user_email = #{userEmail,jdbcType=VARCHAR},
+          </if>
+          <if test="userPhone != null" >
+            user_phone = #{userPhone,jdbcType=VARCHAR},
+          </if>
+          <if test="userSex != null" >
+            user_sex = #{userSex,jdbcType=VARCHAR},
+          </if>
+          <if test="userBirthday != null" >
+            user_birthday = #{userBirthday,jdbcType=VARCHAR},
+          </if>
+          <if test="userImg != null" >
+            user_img = #{userImg,jdbcType=VARCHAR},
+          </if>
+          <if test="userType != null" >
+            user_type = #{userType,jdbcType=VARCHAR},
+          </if>
+     <if test="userState != null" >
+                 user_state = #{userState,jdbcType=VARCHAR}
+               </if>
+        </set>
+    <where>
+
+          user_id = #{userId,jdbcType=VARCHAR}
+
     </where>
 
-
-  </select>-->
+  </update>
 </mapper>

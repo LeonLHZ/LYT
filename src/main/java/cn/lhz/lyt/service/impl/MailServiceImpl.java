@@ -56,8 +56,9 @@ public class MailServiceImpl implements MailService
                helper.setFrom(from);
                helper.setSubject(subject);
                helper.setTo(to);
-               helper.setText(content);
-               helper.setCc("liyingying@heatedloan.com");//抄送
+               //必须加true不然不是html
+               helper.setText(content,true);
+              // helper.setCc("liyingying@heatedloan.com");//抄送
                mailSender.send(message);
                logger.info("html邮件已经发送。");
            } catch (MessagingException e) {
@@ -77,7 +78,7 @@ public class MailServiceImpl implements MailService
                helper.setSubject(subject);
                helper.setTo(to);
                helper.setText(content);
-               helper.setCc("liyingying@heatedloan.com");//抄送
+              // helper.setCc("liyingying@heatedloan.com");//抄送
                //添加附件
                FileSystemResource file = new FileSystemResource(new File(filePath));
                String fileName = file.getFilename();
@@ -100,7 +101,7 @@ public class MailServiceImpl implements MailService
                helper.setSubject(subject);
                helper.setTo(to);
                helper.setText(content);
-               helper.setCc("liyingying@heatedloan.com");//抄送
+               //helper.setCc("liyingying@heatedloan.com");//抄送
                //添加附件
                FileSystemResource file = new FileSystemResource(new File(rscPath));
                helper.addInline(rscId,file);

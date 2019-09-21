@@ -3,8 +3,10 @@ package cn.lhz.lyt.controller;
 import cn.lhz.lyt.pojo.User;
 import cn.lhz.lyt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Neo
@@ -22,11 +24,31 @@ public class LoginController
 
     @RequestMapping("/login")
     @ResponseBody
-    public String login(User user)
+    public Integer login(User user, HttpServletRequest request)
+    {
+        User u = userService.login(user);
+        if (u == null||"0".equals(u.getUserState()))
+            return 0;
+        request.getSession().setAttribute("user", u);
+        return 1;
+
+    }
+
+
+    @RequestMapping("/register")
+    @ResponseBody
+    public Integer register(User user)
     {
 
-      if ("123456".equals(user.getUserPassword()))
-          return "欢迎";
-      return "滚";
+       userService.register(user);
+
+       return null;
+    }
+
+    @RequestMapping("/activation/{userId}")
+    @ResponseBody
+    public String activation(@PathVariable(value="userId") String userId){
+      userService.activation(userId);
+        return null;
     }
 }
