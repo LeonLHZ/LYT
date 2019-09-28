@@ -58,12 +58,12 @@ var param={"userPassword":password,"userEmail":email}
 
 
 /*   Simulate error message from the server   */
-     shakeModal();
+
 }
 
 function shakeModal(){
     $('#loginModal .modal-dialog').addClass('shake');
-             $('.error').addClass('alert alert-danger').html("Invalid email/password combination");
+             $('.error').addClass('alert alert-danger').html("用户名或者密码不正确噢！");
              $('input[type="password"]').val('');
              setTimeout( function(){ 
                 $('#loginModal .modal-dialog').removeClass('shake'); 

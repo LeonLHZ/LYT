@@ -8,7 +8,7 @@ import cn.lhz.lyt.pojo.User;
  */
 public interface UserService
 {
-    public User login(User user);
+    public User login(String emial ,String password);
 
     public String register(User user);
     public void activation(String userId);

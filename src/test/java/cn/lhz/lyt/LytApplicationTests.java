@@ -3,14 +3,18 @@ package cn.lhz.lyt;
 import cn.lhz.lyt.dao.UserMapper;
 import cn.lhz.lyt.pojo.User;
 import cn.lhz.lyt.service.MailService;
+import freemarker.template.Template;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
+import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
+
+
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -21,7 +25,7 @@ public class LytApplicationTests
     private MailService mailService;
 
     @Autowired
-    private TemplateEngine templateEngine;
+       private FreeMarkerConfigurer configurer;
 
     @Autowired
     private UserMapper mapper;
@@ -75,14 +79,17 @@ public class LytApplicationTests
      * 按照模板发送邮件
      */
     @Test
-    public void sendTemplateMail()
+    public void sendTemplateMail()throws Exception
     {
-        //创建邮件正文
-        Context context = new Context();
-        context.setVariable("id", "006");
-        String emailContent = templateEngine.process("emailTemplate", context);
 
-        mailService.sendHtmlMail("760843690@qq.com", "主题：这是模板邮件", emailContent);
+        Map<String, Object> model = new HashMap<>();
+             model.put("userId", "123");
+        //创建邮件正文
+
+        Template template = configurer.getConfiguration().getTemplate("emailTemplate.ftl");
+        String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
+
+        mailService.sendHtmlMail("760843690@qq.com", "主题：这是模板邮件",text);
     }
 
     @Test

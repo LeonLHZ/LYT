@@ -3,13 +3,13 @@ spring:
    static-path-pattern: /**
   resources:
    static-locations: classpath:/static/
-  thymeleaf:
-    prefix: classpath:/templates/
-    check-template-location: true
-    cache: false
-    suffix: .html
-    encoding: UTF-8
-    mode: HTML5
+  #thymeleaf:
+    #prefix: classpath:/templates/
+    #check-template-location: true
+    #cache: false
+    #suffix: .html
+    #encoding: UTF-8
+    #mode: HTML5
 
 
 

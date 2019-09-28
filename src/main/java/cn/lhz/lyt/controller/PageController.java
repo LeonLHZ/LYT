@@ -18,4 +18,10 @@ public class PageController
     public String pageLogin(){
         return "index";
     }
+
+    @RequestMapping("/home")
+           public String userMessagePage(){
+
+               return "userMessage";
+           }
 }

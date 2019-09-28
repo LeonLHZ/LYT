@@ -23,4 +23,6 @@ public interface UserMapper {
    User selectByCondition(User user);
 
    int updateByUser(User user);
+
+    User selectUserLogin(@Param("userEmail") String email,@Param("userPassword") String password);
 }

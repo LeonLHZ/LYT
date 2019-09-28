@@ -306,4 +306,12 @@
     </where>
 
   </update>
+
+  <select id="selectUserLogin" resultMap="BaseResultMap" >
+
+    select * from user
+    <where>
+      user_email=#{userEmail} and user_password=#{userPassword}
+    </where>
+  </select>
 </mapper>

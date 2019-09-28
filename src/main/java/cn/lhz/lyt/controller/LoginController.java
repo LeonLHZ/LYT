@@ -26,7 +26,7 @@ public class LoginController
     @ResponseBody
     public Integer login(User user, HttpServletRequest request)
     {
-        User u = userService.login(user);
+        User u = userService.login(user.getUserEmail() ,user.getUserPassword());
         if (u == null||"0".equals(u.getUserState()))
             return 0;
         request.getSession().setAttribute("user", u);
@@ -46,9 +46,10 @@ public class LoginController
     }
 
     @RequestMapping("/activation/{userId}")
-    @ResponseBody
     public String activation(@PathVariable(value="userId") String userId){
       userService.activation(userId);
-        return null;
+        return "index";
     }
+
+
 }

@@ -9,18 +9,18 @@
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
-	
-	
-	
-	
-	
+
+
+
+
+
 
 </head>
 <body>
-   
-	   
+
+
 	  <body class="index page-index">
-	  
+
 	  <div id="site-holder">
 	  	<div id="flip" class="container" data-attr-page="0">
 	  		<!-- START WELCOME SECTION -->
@@ -43,33 +43,30 @@
 	  						<span class="nav-trigger-line"></span>
 	  					</span>
 	  				</span>
-	  			
+
 	  			<!-- START SOCIAL ICON -->
-	  			<nav class="social-bar">                   
+	  			<nav class="social-bar">
 	  				<a class="social-link" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">
-	  					<i class="fa fa-facebook"></i>
+
 	  				</a>
-	  				<a class="social-link" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">
-	  					<i class="fa fa-twitter"></i>
-	  				</a>
-	  				<a href="#" class="social-link">
-	  					<i class="fa fa-google-plus"></i>
-	  				</a>
-	  				 <a href="#" class="social-link">
-	  					<i class="fa fa-rss"></i>
-	  				</a>
-	  				 <a href="#" class="social-link">
-	  					<i class="fa fa-linkedin"></i>
-	  				</a>
-	  				 <a href="#" class="social-link">
-	  					<i class="fa fa-pinterest"></i>
-	  				</a>
+
+
 	  			</nav>
 	  			<!-- END SOCIAL ICON -->
 	  		</header>
 	  				<!-- END HEADER -->
-	  			
-	  			
+
+					<!-- START LOGO -->
+					<div class="main-logo">
+						<div class="main-logo-shadow">
+						</div>
+						<div class="logo-img">
+						</div>
+						<a href="#about"><span class="logo-arrow"></span></a>
+					</div>
+					<!-- END LOGO -->
+
+
 	  				<!-- START FLUBBER -->
 	  				<div class="flubber">
 	  					<div id="flubber" class="flubber-guy" >
@@ -83,20 +80,20 @@
 	  					</ul>
 	  				</div>
 	  				<!-- END FLUBBER -->
-	  				
+
 	  		</div>
-	  		<!-- END WELCOME SECTION -->		
+	  		<!-- END WELCOME SECTION -->
 	  	</div>
-	  </div> 
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-         
+	  </div>
+
+
+
+
+
+
+
+
+
 		 <div class="modal fade login" id="loginModal">
 		      <div class="modal-dialog login animated">
     		      <div class="modal-content">
@@ -104,7 +101,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">登录</h4>
                     </div>
-                    <div class="modal-body">  
+                    <div class="modal-body">
                         <div class="box">
                              <div class="content">
                                 <div class="social">
@@ -125,11 +122,11 @@
                                 </div>
                                 <div class="error"></div>
                                 <div class="form loginBox">
-                                    <form method="post" action="/login" accept-charset="UTF-8">
-                                    <input id="loginemail" class="form-control" type="text" placeholder="Email" name="userEmail">
-                                    <input id="loginpassword" class="form-control" type="password" placeholder="Password" name="userPassword">
+
+                                    <input id="loginemail" class="form-control" type="text" placeholder="请输入用户名" name="email">
+                                    <input id="loginpassword" class="form-control" type="password"  placeholder="请输入密码" name="userPassword">
                                     <input class="btn btn-default btn-login" type="button" value="Login" onclick="loginAjax()">
-                                    </form>
+
                                 </div>
                              </div>
                         </div>
@@ -137,10 +134,8 @@
                             <div class="content registerBox" style="display:none;">
                              <div class="form">
                                 <form method="post" html="{:multipart=>true}" data-remote="true" action="/register" accept-charset="UTF-8">
-                                <input id="userEmail" class="form-control" type="text" placeholder="Email" name="userEmail">
-									<input id="userUsername" class="form-control" type="text" placeholder="username" name="userUsername">
-
-                                <input id="userPassword" class="form-control" type="password" placeholder="userPassword" name="userPassword">
+                                <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                                <input id="password" class="form-control" type="password" placeholder="Password" name="password">
                                 <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
                                 <input class="btn btn-default btn-register" type="submit" value="Create account" name="commit">
                                 </form>
@@ -150,7 +145,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="forgot login-footer">
-                            <span>Looking to 
+                            <span>Looking to
                                  <a href="javascript: showRegisterForm();">create an account</a>
                             ?</span>
                         </div>
@@ -158,13 +153,12 @@
                              <span>Already have an account?</span>
                              <a href="javascript: showLoginForm();">Login</a>
                         </div>
-                    </div>        
+                    </div>
     		      </div>
 		      </div>
 		  </div>
     </div>
 </body>
-
 
 <script src="jquery/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="js/bootstrap.js" type="text/javascript"></script>
