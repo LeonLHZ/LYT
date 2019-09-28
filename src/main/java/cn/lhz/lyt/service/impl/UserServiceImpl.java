@@ -52,9 +52,9 @@ public class UserServiceImpl implements UserService
        // context.setVariable("userId", user.getUserId());
         //String emailContent = templateEngine.process("emailTemplate", context);
         Map<String, Object> model = new HashMap<>();
-                     model.put("userId", "123");
+                     model.put("userId", user.getUserId());
                 //创建邮件正文
-                Template template = configurer.getConfiguration().getTemplate("emailTemplate");
+                Template template = configurer.getConfiguration().getTemplate("emailTemplate.ftl");
                 String text = FreeMarkerTemplateUtils.processTemplateIntoString(template, model);
         mailService.sendHtmlMail(user.getUserEmail(), "主题：这是一封账户激活邮件", text);
         }catch (Exception e) {

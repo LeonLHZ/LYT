@@ -36,13 +36,12 @@ public class LoginController
 
 
     @RequestMapping("/register")
-    @ResponseBody
-    public Integer register(User user)
+    public String register(User user)
     {
 
        userService.register(user);
 
-       return null;
+       return "index";
     }
 
     @RequestMapping("/activation/{userId}")

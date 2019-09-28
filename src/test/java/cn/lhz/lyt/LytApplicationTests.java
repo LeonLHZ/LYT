@@ -30,7 +30,7 @@ public class LytApplicationTests
     @Autowired
     private UserMapper mapper;
 
-    @Test
+    /*@Test
     public void testSql()
     {
         User user = new User();
@@ -75,9 +75,9 @@ public class LytApplicationTests
     }
 
 
-    /**
+    *//**
      * 按照模板发送邮件
-     */
+     *//*
     @Test
     public void sendTemplateMail()throws Exception
     {
@@ -101,7 +101,7 @@ public class LytApplicationTests
         user.setUserState("0");
 
         System.out.println(mapper.updateByUser(user));
-    }
+    }*/
 
 
 }
